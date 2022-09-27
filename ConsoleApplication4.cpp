@@ -11,6 +11,6 @@ int main(){
     Complex c(3, 4), d(8, -5);
     cout << c + d << "\n";
     Matrix e(3, 3), f(3, 3);
-    cin >> e >> f;
-    cout << e * 4;
+    cin >> e;
+    cout << e.Alg_Add(0, 0);
 }

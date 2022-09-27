@@ -48,15 +48,24 @@ public:
 	}
 private:
 	double Minor(int i, int j, Matrix mat) {
+		int a = 0, b = 0;
+		Matrix t(mat.lines - 1, mat.columns - 1);
 		if (sizeof(mat.matrix) == sizeof(double)) {
 			return mat[0][0];
 		}
 		else {
-			Matrix t(mat.lines - 1, mat.columns - 1);
-			
+			while (a < mat.lines) {
+				if (a != i) {
+					while (b < mat.lines) {
+						if (b != j) t[a][b] = mat[a][b];
+						b++;
+					}
+				}
+				a++;
+			}
+			for (int k = 0; k < t.lines; k++) Minor(k, 0, t);
 		}
 	}
-public:
 };
 
 Matrix operator+(Matrix left, Matrix right) {
