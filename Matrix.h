@@ -44,22 +44,29 @@ public:
 		return t;
 	}
 	double Alg_Add(int i, int j) {
-		return pow(-1, i + j) * Minor(i, j, *this);
+		if (!(i + j % 2))
+			return Minor(i, j, *this);
+		else return -Minor(i, j, *this);
 	}
 private:
 	double Minor(int i, int j, Matrix mat) {
-		int a = 0, b = 0;
+		int a = 0, b = 0, x = 0, y = 0;
 		Matrix t(mat.lines - 1, mat.columns - 1);
-		if (sizeof(mat.matrix) == sizeof(double)) {
+		if (mat.lines = 1 && mat.columns == 1) {
 			return mat[0][0];
 		}
 		else {
 			while (a < mat.lines) {
 				if (a != i) {
-					while (b < mat.lines) {
-						if (b != j) t[a][b] = mat[a][b];
+					while (b < mat.columns) {
+						if (b != j) {
+							t[x][y] = mat[a][b];
+							y++;
+						}
 						b++;
 					}
+					x++;
+					b = 0;
 				}
 				a++;
 			}
