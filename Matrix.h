@@ -1,9 +1,9 @@
 #pragma once
 class Matrix{
 public:
-	double lines, columns;
+	int lines, columns;
 	double** matrix = new double* [lines];
-	Matrix(double m, double n) : lines(m), columns(n) {
+	Matrix(int m, int n) : lines(m), columns(n) {
 		for (int i = 0; i < lines; i++) {
 			matrix[i] = new double[columns];
 		}
@@ -43,6 +43,20 @@ public:
 		}
 		return t;
 	}
+	double Alg_Add(int i, int j) {
+		return pow(-1, i + j) * Minor(i, j, *this);
+	}
+private:
+	double Minor(int i, int j, Matrix mat) {
+		if (sizeof(mat.matrix) == sizeof(double)) {
+			return mat[0][0];
+		}
+		else {
+			Matrix t(mat.lines - 1, mat.columns - 1);
+			
+		}
+	}
+public:
 };
 
 Matrix operator+(Matrix left, Matrix right) {

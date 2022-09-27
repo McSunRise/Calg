@@ -1,7 +1,4 @@
-#include <cmath>
-#include <iostream>
-using namespace std;
-
+#pragma once
 class Complex {
 public:
 	double Re, Im;

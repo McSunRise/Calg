@@ -1,6 +1,4 @@
-#include <cmath>
-#include <iostream>
-using namespace std;
+#pragma once
 class Vector{
 public:
 	double x, y, z, l;
