@@ -1,5 +1,4 @@
 #pragma once
-double det(Matrix mat){};
 class Matrix{
 public:
 	int lines, columns;
@@ -49,12 +48,18 @@ public:
 			return Minor(i, j, *this);
 		else return -Minor(i, j, *this);
 	}
-private:
+	double det() {
+		double sum = 0;
+		for (int i = 0; i < columns; i++) {
+			sum += matrix[0][i] * Alg_Add(0, i);
+		}
+		return sum;
+	}
 	double Minor(int i, int j, Matrix mat) {
 		int a = 0, b = 0, x = 0, y = 0;
 		Matrix t(mat.lines - 1, mat.columns - 1);
-		if (mat.lines = 1 && mat.columns == 1) {
-			return mat[0][0];
+		if (mat.lines == 1 && mat.columns == 1) {
+			return 1;
 		}
 		else {
 			while (a < mat.lines) {
@@ -72,18 +77,10 @@ private:
 				}
 				a++;
 			}
-			return det(t);
+			return t.det();
 		}
 	}
 };
-
-double det(Matrix mat) {
-	double sum = 0;
-	for (int i = 0; i < mat.lines; i++) {
-		sum += mat[i][0] * mat.Alg_Add(i, 0);
-	}
-	return sum;
-}
 
 Matrix operator+(Matrix left, Matrix right) {
 	Matrix t(left.lines, left.columns);
