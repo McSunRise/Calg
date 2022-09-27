@@ -12,5 +12,5 @@ int main(){
     cout << c + d << "\n";
     Matrix e(2, 2);
     cin >> e;
-    cout << e.Alg_Add(0, 0);
+    cout << det(e);
 }
