@@ -50,10 +50,13 @@ public:
 	}
 	double det() {
 		double sum = 0;
-		for (int i = 0; i < columns; i++) {
-			sum += matrix[0][i] * Alg_Add(0, i);
+		if (lines == columns) {
+			for (int i = 0; i < columns; i++) {
+				sum += matrix[0][i] * Alg_Add(0, i);
+			}
+			return sum;
 		}
-		return sum;
+		else return 0;
 	}
 	double Minor(int i, int j, Matrix mat) {
 		int a = 0, b = 0, x = 0, y = 0;
