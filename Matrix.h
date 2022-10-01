@@ -6,8 +6,6 @@ public:
 	Matrix(int m, int n) : lines(m), columns(n) {
 		for (int i = 0; i < lines; i++) {
 			matrix[i] = new double[columns];
-		}
-		for (int i = 0; i < lines; i++) {
 			for (int j = 0; j < columns; j++) {
 				matrix[i][j] = 0;
 			}
@@ -44,7 +42,7 @@ public:
 		return t;
 	}
 	double Alg_Add(int i, int j) {
-		if (!(i + j % 2))
+		if (!((i + j) % 2))
 			return Minor(i, j, *this);
 		else return -Minor(i, j, *this);
 	}
@@ -75,13 +73,29 @@ public:
 						b++;
 					}
 					x++;
-					b = 0;
-					y = 0;
+					b = y = 0;
 				}
 				a++;
 			}
 			return t.det();
 		}
+	}
+	Matrix conj() {
+		Matrix t(lines, columns);
+		for (int i = 0; i < lines; i++) {
+			for (int j = 0; j < columns; j++) {
+				t[i][j] = Alg_Add(j, i);
+			}
+		}
+		return t;
+	}
+	Matrix inv() {
+		if (det())
+			return conj() / det();
+		else return Matrix(1, 1);
+	}
+	Matrix operator/(double n) {
+		return *this * (1 / n);
 	}
 };
 
@@ -125,6 +139,10 @@ Matrix operator*(double n, Matrix right) {
 		}
 	}
 	return t;
+}
+
+Matrix operator/(Matrix left, Matrix right) {
+	return left * right.inv();
 }
 
 std::istream &operator>>(std::istream& Str, Matrix m) {

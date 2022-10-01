@@ -10,7 +10,7 @@ int main(){
     cout << a * b << "\n";
     Complex c(3, 4), d(8, -5);
     cout << c + d << "\n";
-    Matrix e(4, 4);
+    Matrix e(1, 1);
     cin >> e;
     cout << e.det();
 }
