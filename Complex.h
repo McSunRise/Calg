@@ -1,5 +1,6 @@
 #pragma once
-class Complex {
+#include <iostream>
+class Complex{
 public:
 	double Re, Im;
 	Complex(double r, double i) : Re(r), Im(i) {}
